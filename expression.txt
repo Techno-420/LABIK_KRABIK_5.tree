@@ -2,4 +2,7 @@ mnogitel=5
 mnognik=2.5
 f(mnognik,mnogitel):
 	return mnognik**mnogitel
-mnognik*(mnogitel+f(mnognik,mnogitel))
+mnognik + mnogitel
+mnognik - mnogitel
+mnognik * mnogitel
+mnognik / mnogitel
