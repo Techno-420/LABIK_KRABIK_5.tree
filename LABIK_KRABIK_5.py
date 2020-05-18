@@ -1,6 +1,7 @@
 class Expression:
     def __init__(self):
         self.expression = []
+        self.variables = {}
     def reading(self,name):
         expr = open(name, 'r')
         for lines in expr:
