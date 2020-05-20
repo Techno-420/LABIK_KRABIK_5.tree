@@ -1,8 +1,6 @@
-mnogitel=5
-mnognik=2.5
-f(mnognik,mnogitel):
-	return mnognik**mnogitel
-mnognik + mnogitel
-mnognik - mnogitel
-mnognik * mnogitel
-mnognik / mnogitel
+mnogitel = 3
+mnognik = 5
+def f(mnognik,mnogitel):
+	mnognik ^ mnogitel
+5 * mnogitel
+mnognik ^ mnogitel

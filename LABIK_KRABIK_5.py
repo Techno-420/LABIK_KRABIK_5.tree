@@ -29,12 +29,23 @@ class Expression:
         operation = [a*b, a/b, a+b, a-b, a**b]
         operators = ['*','/','+','-','^']
         operation_dict = {operators[i]:operation[i] for i in range(len(operators))}
+        print('operation dict',operation_dict)
         if operator in operation_dict:
             return operation_dict.get(operator)
     def count_expression(self):
         for el in self.expression:
+            print(el)
             if ("\t" not in el) and ("def" not in el) and ("=" not in el):
-                print(self.operations(el[1],self.variables.get(el[0]),self.variables.get(el[2])))
+                temp_v=[]
+                for k in el:
+                    if k in self.variables.keys():
+                        temp_v.append(self.variables.get(k))
+                    elif k.isdigit():
+                        temp_v.append(float(k))
+                print(temp_v)
+                print(self.operations(el[1],temp_v[0],temp_v[1]))
+    
+
 a = Expression()
 a.reading('expression.txt')
 a.init_var()
