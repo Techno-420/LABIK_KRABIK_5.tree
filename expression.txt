@@ -1,6 +1,6 @@
 mnogitel = 3
 mnognik = 5
-def f(mnognik,mnogitel):
+def f ( mnognik , mnogitel ) :
 	mnognik ^ mnogitel
-5 * mnogitel
-mnognik ^ mnogitel
+	a = 5 + b
+mnognik ^ mnogitel * mnogitel ^ mnogitel
