@@ -70,28 +70,33 @@ class Expression:
                             temp_v.append(self.variables.get(k))
                         elif k not in ['*', '/', '^', '+', '-']:
                             temp_v.append(float(k))
-                    print(self.operations(el[1], temp_v[0], temp_v[1]))
+                    return self.operations(el[1], temp_v[0], temp_v[1])
 
     def function_reader(self):
         parameters = []
         expr = []
-        local_variables = {}
+        var_arr = []
         for k in range(len(self.expression)):
             if 'def' in self.expression[k]:
                 for el in self.expression[k]:
                     if el in self.variables.keys():
                         parameters.append(el)
-            elif "\t" in self.expression[k]:
-                expr.append(self.expression[k])
-        for element in expr:
+            elif "return" in self.expression[k]:
+                expr = self.expression[k][2:]
+            elif "\t" in self.expression[k] and "return" not in self.expression[k]:
+                var_arr.append(self.expression[k])
+        print(expr)
+        for element in var_arr:
             del element[0]
             if '=' in element:
                 if len(element[2:]) is 1:
-                    local_variables[element[0]] = element[2]
+                    self.variables[element[0]] = float(element[2])
                 else:
-                    local_variables[element[0]] = element[2:]
-            print(element)
-        print(local_variables)
+                    self.variables[element[0]] = self.count_expression([element[2:]])
+        print(self.variables)
+        # print("var_arr", var_arr)
+        print("k", self.count_expression([expr]))
+
 
 
 a = Expression()

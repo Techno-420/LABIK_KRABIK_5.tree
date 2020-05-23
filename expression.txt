@@ -1,6 +1,7 @@
 mnogitel = 3
 mnognik = 5
 def f ( mnognik , mnogitel ) :
-	mnognik ^ mnogitel
-	a = 5 + b
-mnognik ^ mnogitel * mnogitel ^ mnogitel
+	b = 1
+	a = 2 + b
+	return mnognik ^ a
+mnogitel + mnognik * f
