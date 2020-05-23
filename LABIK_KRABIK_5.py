@@ -3,6 +3,7 @@ class Expression:
         self.expression = []
         self.variables = {}
         self.tree = {}
+        self.final_answer = 0
 
     def reading(self, name):
         expr = open(name, 'r')
@@ -26,15 +27,17 @@ class Expression:
             if ("=" in self.expression[i]) and ('\t' not in self.expression[i]):
                 temp_arr.append([self.expression[i][0], self.expression[i][2]])
         self.variables = {temp_arr[i][0]: float(temp_arr[i][1]) for i in range(len(temp_arr))}
-
-        print(self.variables)
+        for k in range(len(self.expression)):
+            if "def" in self.expression[k]:
+                self.variables[self.expression[k][1]] = self.function_reader()
+        print("lto", self.variables)
 
     def operations(self, operator, a, b):
         operation = [a * b, a / b, a + b, a - b, a ** b]
         operators = ['*', '/', '+', '-', '^']
         operation_dict = {operators[i]: operation[i] for i in range(len(operators))}
         if operator in operation_dict:
-            return operation_dict.get(operator)
+            return float(operation_dict.get(operator))
 
     def parse_tree(self):
         temp_str = ' '
@@ -44,10 +47,11 @@ class Expression:
                 self.tree = {temp_str: el for i in range(len(el))}
                 print(self.tree)
         arr_items = self.tree.get(temp_str)
-        self.count_expression([arr_items])
+        print("arr_items", arr_items)
+        print(self.count_expression([arr_items]))
+        # print("kavo", self.variables)
 
     def count_expression(self, expression):
-
         for el in expression:
             if len(el) > 3:
                 el1 = el[:3]
@@ -70,7 +74,9 @@ class Expression:
                             temp_v.append(self.variables.get(k))
                         elif k not in ['*', '/', '^', '+', '-']:
                             temp_v.append(float(k))
-                    return self.operations(el[1], temp_v[0], temp_v[1])
+                    print("test228", self.operations(el[1], temp_v[0], temp_v[1]))
+                    self.final_answer = self.operations(el[1], temp_v[0], temp_v[1])
+                    return self.final_answer
 
     def function_reader(self):
         parameters = []
@@ -93,10 +99,10 @@ class Expression:
                     self.variables[element[0]] = float(element[2])
                 else:
                     self.variables[element[0]] = self.count_expression([element[2:]])
-        print(self.variables)
-        # print("var_arr", var_arr)
-        print("k", self.count_expression([expr]))
 
+        print(self.variables)
+        print("var_arr", var_arr)
+        return self.count_expression([expr])
 
 
 a = Expression()

@@ -4,4 +4,4 @@ def f ( mnognik , mnogitel ) :
 	b = 1
 	a = 2 + b
 	return mnognik ^ a
-mnogitel + mnognik * f
+mnogitel * f * mnognik
